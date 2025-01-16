@@ -14,11 +14,6 @@ import LaySidebarCenterCollapse from "../lay-sidebar/components/SidebarCenterCol
 
 const route = useRoute();
 const isShow = ref(false);
-const showLogo = ref(
-  storageLocal().getItem<StorageConfigs>(
-    `${responsiveStorageNameSpace()}configure`
-  )?.showLogo ?? true
-);
 
 const {
   device,
@@ -74,26 +69,17 @@ watch(
 
 onMounted(() => {
   getSubMenuData();
-
-  emitter.on("logoChange", key => {
-    showLogo.value = key;
-  });
-});
-
-onBeforeUnmount(() => {
-  // 解绑`logoChange`公共事件，防止多次触发
-  emitter.off("logoChange");
 });
 </script>
 
 <template>
   <div
     v-loading="loading"
-    :class="['sidebar-container', showLogo ? 'has-logo' : 'no-logo']"
+    :class="['sidebar-container', 'has-logo']"
     @mouseenter.prevent="isShow = true"
     @mouseleave.prevent="isShow = false"
   >
-    <LaySidebarLogo v-if="showLogo" :collapse="isCollapse" />
+    <LaySidebarLogo :collapse="isCollapse" />
     <el-scrollbar
       wrap-class="scrollbar-wrapper"
       :class="[device === 'mobile' ? 'mobile' : 'pc']"

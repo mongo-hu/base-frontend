@@ -13,6 +13,7 @@ import AccountSettingsIcon from "@iconify-icons/ri/user-settings-line";
 import LogoutCircleRLine from "@iconify-icons/ri/logout-circle-r-line";
 import Setting from "@iconify-icons/ri/settings-3-line";
 import Check from "@iconify-icons/ep/check";
+import { getConfig } from "@/config";
 
 const {
   layout,
@@ -29,6 +30,9 @@ const {
 } = useNav();
 
 const { t, locale, translationCh, translationEn } = useTranslationLang();
+const EnableSearch = getConfig("EnableSearch");
+const EnableNotifications = getConfig("EnableNotifications");
+const EnableConfig = getConfig("EnableConfig");
 </script>
 
 <template>
@@ -49,7 +53,7 @@ const { t, locale, translationCh, translationEn } = useTranslationLang();
 
     <div v-if="layout === 'vertical'" class="vertical-header-right">
       <!-- 菜单搜索 -->
-      <LaySearch id="header-search" />
+      <LaySearch v-if="EnableSearch" id="header-search" />
       <!-- 国际化 -->
       <el-dropdown id="header-translation" trigger="click">
         <GlobalizationIcon
@@ -85,7 +89,7 @@ const { t, locale, translationCh, translationEn } = useTranslationLang();
       <!-- 全屏 -->
       <LaySidebarFullScreen id="full-screen" />
       <!-- 消息通知 -->
-      <LayNotice id="header-notice" />
+      <LayNotice v-if="EnableNotifications" id="header-notice" />
       <!-- 退出登录 -->
       <el-dropdown trigger="click">
         <span class="el-dropdown-link navbar-bg-hover select-none">
@@ -108,6 +112,7 @@ const { t, locale, translationCh, translationEn } = useTranslationLang();
         class="set-icon navbar-bg-hover"
         :title="t('buttons.pureOpenSystemSet')"
         @click="onPanel"
+        v-if="EnableConfig"
       >
         <IconifyIconOffline :icon="Setting" />
       </span>

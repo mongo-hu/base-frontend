@@ -1,12 +1,29 @@
 <script setup lang="ts">
 import { getTopMenu } from "@/router/utils";
 import { useNav } from "@/layout/hooks/useNav";
-
+import { onBeforeUnmount, onMounted, ref } from "vue";
+import { storageLocal } from "@pureadmin/utils";
+import { responsiveStorageNameSpace } from "@/config";
+import { emitter } from "@/utils/mitt";
 defineProps({
   collapse: Boolean
 });
 
 const { title, getLogo } = useNav();
+const showLogo = ref(
+  storageLocal().getItem<StorageConfigs>(
+    `${responsiveStorageNameSpace()}configure`
+  )?.showLogo ?? true
+);
+onMounted(() => {
+  emitter.on("logoChange", key => {
+    showLogo.value = key;
+  });
+});
+onBeforeUnmount(() => {
+  // 解绑`logoChange`公共事件，防止多次触发
+  emitter.off("logoChange");
+});
 </script>
 
 <template>
@@ -19,7 +36,7 @@ const { title, getLogo } = useNav();
         class="sidebar-logo-link"
         :to="getTopMenu()?.path ?? '/'"
       >
-        <img :src="getLogo()" alt="logo" />
+        <img v-if="showLogo" :src="getLogo()" alt="logo" />
         <span class="sidebar-title">{{ title }}</span>
       </router-link>
       <router-link
@@ -29,7 +46,7 @@ const { title, getLogo } = useNav();
         class="sidebar-logo-link"
         :to="getTopMenu()?.path ?? '/'"
       >
-        <img :src="getLogo()" alt="logo" />
+        <img v-if="showLogo" :src="getLogo()" alt="logo" />
         <span class="sidebar-title">{{ title }}</span>
       </router-link>
     </transition>
@@ -63,7 +80,7 @@ const { title, getLogo } = useNav();
       font-size: 18px;
       font-weight: 600;
       line-height: 32px;
-      color: var(--pure-theme-sub-menu-active-text);
+      color: var(--pure-theme-menu-text);
       text-overflow: ellipsis;
       white-space: nowrap;
     }

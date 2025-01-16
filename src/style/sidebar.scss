@@ -438,7 +438,7 @@
         font-size: 18px;
         font-weight: 600;
         line-height: 32px;
-        color: var(--pure-theme-sub-menu-active-text);
+        color: var(--pure-theme-menu-text);
         text-overflow: ellipsis;
         white-space: nowrap;
       }
@@ -456,7 +456,7 @@
       align-items: center;
       justify-content: flex-end;
       min-width: 340px;
-      color: var(--pure-theme-sub-menu-active-text);
+      color: var(--pure-theme-menu-text);
 
       /* 搜索 */
       .search-container,
@@ -477,14 +477,14 @@
 
       .dropdown-badge {
         height: 48px;
-        color: var(--pure-theme-sub-menu-active-text);
+        color: var(--pure-theme-menu-text);
       }
 
       .globalization {
         width: 40px;
         height: 48px;
         padding: 11px;
-        color: var(--pure-theme-sub-menu-active-text);
+        color: var(--pure-theme-menu-text);
         cursor: pointer;
         outline: none;
       }
@@ -495,7 +495,7 @@
         justify-content: space-around;
         height: 48px;
         padding: 10px;
-        color: var(--pure-theme-sub-menu-active-text);
+        color: var(--pure-theme-menu-text);
         cursor: pointer;
 
         p {

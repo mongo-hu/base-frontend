@@ -1,9 +1,9 @@
 <script setup lang="ts">
 defineOptions({
-  name: "Welcome"
+  name: "DeviceManagement"
 });
 </script>
 
 <template>
-  <h1>首页</h1>
+  <h1>设备管理</h1>
 </template>

@@ -72,6 +72,9 @@ menus:
   purePermissionButton: 按钮权限
   purePermissionButtonRouter: 路由返回按钮权限
   purePermissionButtonLogin: 登录接口返回按钮权限
+  pureComprehensiveWarning: 综合预警
+  pureConfigurationManagement: 配置管理
+  pureDeviceManagement: 设备管理
 status:
   pureLoad: 加载中...
   pureMessage: 消息

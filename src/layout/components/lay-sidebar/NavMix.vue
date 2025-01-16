@@ -17,7 +17,11 @@ import AccountSettingsIcon from "@iconify-icons/ri/user-settings-line";
 import LogoutCircleRLine from "@iconify-icons/ri/logout-circle-r-line";
 import Setting from "@iconify-icons/ri/settings-3-line";
 import Check from "@iconify-icons/ep/check";
+import { getConfig } from "@/config";
 
+const EnableSearch = getConfig("EnableSearch");
+const EnableNotifications = getConfig("EnableNotifications");
+const EnableConfig = getConfig("EnableConfig");
 const menuRef = ref();
 const defaultActive = ref(null);
 
@@ -86,7 +90,7 @@ watch(
             :class="['sub-menu-icon', route.meta.icon]"
           >
             <component
-              :is="useRenderIcon(route.meta && toRaw(route.meta.icon))"
+               :is="useRenderIcon(route.meta && toRaw(route.meta.icon))"
             />
           </div>
           <div :style="getDivStyle">
@@ -100,7 +104,7 @@ watch(
     </el-menu>
     <div class="horizontal-header-right">
       <!-- 菜单搜索 -->
-      <LaySearch id="header-search" />
+      <LaySearch v-if="EnableSearch" id="header-search" />
       <!-- 国际化 -->
       <el-dropdown id="header-translation" trigger="click">
         <GlobalizationIcon
@@ -134,7 +138,7 @@ watch(
       <!-- 全屏 -->
       <LaySidebarFullScreen id="full-screen" />
       <!-- 消息通知 -->
-      <LayNotice id="header-notice" />
+      <LayNotice v-if="EnableNotifications" id="header-notice" />
       <!-- 退出登录 -->
       <el-dropdown trigger="click">
         <span class="el-dropdown-link navbar-bg-hover select-none">
@@ -157,6 +161,7 @@ watch(
         class="set-icon navbar-bg-hover"
         :title="t('buttons.pureOpenSystemSet')"
         @click="onPanel"
+        v-if="EnableConfig"
       >
         <IconifyIconOffline :icon="Setting" />
       </span>

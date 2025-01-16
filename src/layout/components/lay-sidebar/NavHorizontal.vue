@@ -24,6 +24,13 @@ const showLogo = ref(
   )?.showLogo ?? true
 );
 
+import { getConfig } from "@/config";
+
+const EnableSearch = getConfig("EnableSearch");
+const EnableNotifications = getConfig("EnableNotifications");
+const EnableConfig = getConfig("EnableConfig");
+
+
 const { t, route, locale, translationCh, translationEn } =
   useTranslationLang(menuRef);
 const {
@@ -59,8 +66,8 @@ onMounted(() => {
     v-loading="usePermissionStoreHook().wholeMenus.length === 0"
     class="horizontal-header"
   >
-    <div v-if="showLogo" class="horizontal-header-left" @click="backTopMenu">
-      <img :src="getLogo()" alt="logo" />
+    <div class="horizontal-header-left" @click="backTopMenu">
+      <img v-if="showLogo" :src="getLogo()" alt="logo" />
       <span>{{ title }}</span>
     </div>
     <el-menu
@@ -79,7 +86,7 @@ onMounted(() => {
     </el-menu>
     <div class="horizontal-header-right">
       <!-- 菜单搜索 -->
-      <LaySearch id="header-search" />
+      <LaySearch v-if="EnableSearch" id="header-search" />
       <!-- 国际化 -->
       <el-dropdown id="header-translation" trigger="click">
         <GlobalizationIcon
@@ -113,7 +120,7 @@ onMounted(() => {
       <!-- 全屏 -->
       <LaySidebarFullScreen id="full-screen" />
       <!-- 消息通知 -->
-      <LayNotice id="header-notice" />
+      <LayNotice v-if="EnableNotifications" id="header-notice" />
       <!-- 退出登录 -->
       <el-dropdown trigger="click">
         <span class="el-dropdown-link navbar-bg-hover">
@@ -136,6 +143,7 @@ onMounted(() => {
         class="set-icon navbar-bg-hover"
         :title="t('buttons.pureOpenSystemSet')"
         @click="onPanel"
+        v-if="EnableConfig" 
       >
         <IconifyIconOffline :icon="Setting" />
       </span>
