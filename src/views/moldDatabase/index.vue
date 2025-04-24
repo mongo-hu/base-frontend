@@ -5,5 +5,5 @@ defineOptions({
 </script>
 
 <template>
-  <h1>首页仪表盘</h1>
+  <h1>模型数据库</h1>
 </template>

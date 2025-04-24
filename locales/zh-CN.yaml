@@ -61,7 +61,8 @@ panel:
   pureHiddenFooter: 隐藏页脚
   pureMultiTagsCache: 页签持久化
 menus:
-  pureHome: 首页
+  pureHome: 首页仪表盘
+  pureSmartMatch: 智能匹配
   pureLogin: 登录
   pureAbnormal: 异常页面
   pureFourZeroFour: "404"
@@ -71,7 +72,10 @@ menus:
   purePermissionPage: 页面权限
   purePermissionButton: 按钮权限
   purePermissionButtonRouter: 路由返回按钮权限
-  purePermissionButtonLogin: 登录接口返回按钮权限
+  pureMoldDatabase: 模具数据库管理
+  pureMatchHistory: 匹配历史
+  pureCADManagement: CAD文件管理系统
+  pureSystemSettings: 系统设置
 status:
   pureLoad: 加载中...
   pureMessage: 消息

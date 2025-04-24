@@ -110,6 +110,7 @@
       .el-scrollbar.pc {
         /* logo: 48px、leftCollapse: 40px、leftCollapse-shadow: 4px */
         height: calc(100% - 92px);
+        padding-top: 10px;
       }
 
       /* logo: 48px */
@@ -237,14 +238,24 @@
       color: #fff;
     }
 
-    .is-active.submenu-title-noDropdown.outer-most::before {
+    .is-active.submenu-title-noDropdown.outer-most::before,
+    .submenu-title-noDropdown.outer-most:hover::before {
       position: absolute;
       inset: 0 8px;
+      z-index: -1; /* Ensure the background stays behind the text */
       margin: 4px 0;
       clear: both;
       content: "";
       background: var(--el-color-primary) !important;
       border-radius: 3px;
+    }
+
+    .submenu-title-noDropdown.outer-most:hover::before {
+      opacity: 0.5; /* Set opacity to 1 when both active and hover occur */
+    }
+
+    .is-active.submenu-title-noDropdown.outer-most:hover::before {
+      opacity: 1; /* Set opacity to 1 when both active and hover occur */
     }
   }
 
@@ -594,7 +605,7 @@ body[layout="vertical"] {
   }
 
   .sidebar-logo-container {
-    background: var(--pure-theme-sidebar-logo);
+    // background: var(--pure-theme-sidebar-logo);
   }
 
   .hideSidebar {

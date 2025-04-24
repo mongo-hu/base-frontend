@@ -8,7 +8,7 @@ export default {
   component: Layout,
   redirect: "/welcome",
   meta: {
-    icon: "ep:home-filled",
+    icon: "mdi:chart-bar",
     title: $t("menus.pureHome"),
     rank: 0
   },

@@ -5,5 +5,5 @@ defineOptions({
 </script>
 
 <template>
-  <h1>首页仪表盘</h1>
+  <h1>CAD文件管理系统</h1>
 </template>
