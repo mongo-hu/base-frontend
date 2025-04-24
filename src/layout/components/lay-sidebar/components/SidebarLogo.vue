@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import SvgLogo from "@/components/SvgLogo.vue";
 import { getTopMenu } from "@/router/utils";
 import { useNav } from "@/layout/hooks/useNav";
 
@@ -29,27 +30,8 @@ const { title, getLogo } = useNav();
         class="sidebar-logo-link"
         :to="getTopMenu()?.path ?? '/'"
       >
-        <!-- <img :src="getLogo()" alt="logo" />
-        <span class="sidebar-title">{{ title }}</span> -->
         <div class="logo">
-          <svg
-            width="40"
-            height="40"
-            viewBox="0 0 40 40"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M20 5L5 12.5V27.5L20 35L35 27.5V12.5L20 5Z"
-              stroke="#3498DB"
-              stroke-width="2"
-            />
-            <path
-              d="M20 5V20M20 20V35M20 20L5 12.5M20 20L35 12.5"
-              stroke="#3498DB"
-              stroke-width="2"
-            />
-          </svg>
+          <SvgLogo />
           <h1>{{ title }}</h1>
         </div>
       </router-link>
@@ -101,6 +83,12 @@ const { title, getLogo } = useNav();
   justify-content: center; /* 垂直居中 */
   padding: 30px 0 40px;
   text-align: center;
+
+  svg {
+    width: 65px;
+    height: 65px;
+    margin-bottom: 10px;
+  }
 
   img {
     width: 40px;
