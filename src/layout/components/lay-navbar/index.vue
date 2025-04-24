@@ -40,10 +40,10 @@ const { t, locale, translationCh, translationEn } = useTranslationLang();
       @toggleClick="toggleSideBar"
     />
 
-    <LaySidebarBreadCrumb
+    <!-- <LaySidebarBreadCrumb
       v-if="layout !== 'mix' && device !== 'mobile'"
       class="breadcrumb-container"
-    />
+    /> -->
 
     <LayNavMix v-if="layout === 'mix'" />
 
